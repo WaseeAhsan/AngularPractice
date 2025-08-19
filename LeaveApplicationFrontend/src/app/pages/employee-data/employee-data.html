@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    <h2 class="mb-3">Employee Management</h2>
+  
+    <!-- Add/Edit Form -->
+    <form (ngSubmit)="saveEmployee()" class="mb-4">
+      <div class="row g-2">
+        <div class="col-md-3">
+          <input type="text" class="form-control" placeholder="Name" [(ngModel)]="employee.name" name="name" required>
+        </div>
+        <div class="col-md-3">
+          <input type="number" class="form-control" placeholder="Phone" [(ngModel)]="employee.phone" name="phone" required>
+        </div>
+        <div class="col-md-4">
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="employee.email" name="email" required>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">
+            {{ employee.id ? 'Update' : 'Add' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Employee Table -->
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th style="width: 150px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees">
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.phone }}</td>
+          <td>{{ emp.email }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" (click)="editEmployee(emp)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
